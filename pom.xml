@@ -8,6 +8,7 @@
     <artifactId>House</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+
     <!--1、声明版本 -->
     <properties>
         <shiro.version>1.4.0</shiro.version>
@@ -95,13 +96,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.7</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>2.4.3</version>
-        </dependency>
-
     </dependencies>
     <build>
         <plugins>
@@ -113,6 +107,16 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- tomcat7插件 -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8081</port>
+                    <path>/</path>
                 </configuration>
             </plugin>
         </plugins>

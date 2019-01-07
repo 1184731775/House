@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!--1、数据源  -->
-    <bean id="userRealm" class="com.xcmxy.shiro.AdminRealm"></bean>
+    <bean id="userRealm" class="com.qfedu.shiro.AdminRealm"></bean>
     <!--2、管理器  -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="userRealm"></property>

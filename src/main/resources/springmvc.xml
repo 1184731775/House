@@ -8,7 +8,7 @@
 
 	<!--扫描控制器 -->
 	<context:component-scan
-		base-package="com.qfedu.controller"></context:component-scan>
+		base-package="com.qfedu.controller,com.qfedu.config"></context:component-scan>
 
 	<!--注解生效 -->
 	<mvc:annotation-driven conversion-service="conversionService">

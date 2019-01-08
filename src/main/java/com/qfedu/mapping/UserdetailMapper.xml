@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.UserdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Userdetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="imgPaht" property="imgpaht" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="linkman_name" property="linkmanName" jdbcType="VARCHAR" />
+    <result column="linkman_phone" property="linkmanPhone" jdbcType="VARCHAR" />
+    <result column="linkman_relation" property="linkmanRelation" jdbcType="VARCHAR" />
+    <result column="approve" property="approve" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="startdate" property="startdate" jdbcType="DATE" />
+    <result column="schoolname" property="schoolname" jdbcType="VARCHAR" />
+    <result column="overdate" property="overdate" jdbcType="DATE" />
+    <result column="school_type" property="schoolType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, idcard, imgPaht, nickname, industry, linkman_name, linkman_phone, linkman_relation, 
+    approve, education, startdate, schoolname, overdate, school_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_userdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_userdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.Userdetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_userdetail (idcard, imgPaht, nickname, 
+      industry, linkman_name, linkman_phone, 
+      linkman_relation, approve, education, 
+      startdate, schoolname, overdate, 
+      school_type)
+    values (#{idcard,jdbcType=VARCHAR}, #{imgpaht,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=VARCHAR}, #{linkmanName,jdbcType=VARCHAR}, #{linkmanPhone,jdbcType=VARCHAR}, 
+      #{linkmanRelation,jdbcType=VARCHAR}, #{approve,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{startdate,jdbcType=DATE}, #{schoolname,jdbcType=VARCHAR}, #{overdate,jdbcType=DATE}, 
+      #{schoolType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Userdetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_userdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="imgpaht != null" >
+        imgPaht,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="linkmanName != null" >
+        linkman_name,
+      </if>
+      <if test="linkmanPhone != null" >
+        linkman_phone,
+      </if>
+      <if test="linkmanRelation != null" >
+        linkman_relation,
+      </if>
+      <if test="approve != null" >
+        approve,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="schoolname != null" >
+        schoolname,
+      </if>
+      <if test="overdate != null" >
+        overdate,
+      </if>
+      <if test="schoolType != null" >
+        school_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpaht != null" >
+        #{imgpaht,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanName != null" >
+        #{linkmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null" >
+        #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanRelation != null" >
+        #{linkmanRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="approve != null" >
+        #{approve,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=DATE},
+      </if>
+      <if test="schoolname != null" >
+        #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="overdate != null" >
+        #{overdate,jdbcType=DATE},
+      </if>
+      <if test="schoolType != null" >
+        #{schoolType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.Userdetail" >
+    update t_userdetail
+    <set >
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpaht != null" >
+        imgPaht = #{imgpaht,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanName != null" >
+        linkman_name = #{linkmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null" >
+        linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanRelation != null" >
+        linkman_relation = #{linkmanRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="approve != null" >
+        approve = #{approve,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="schoolname != null" >
+        schoolname = #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="overdate != null" >
+        overdate = #{overdate,jdbcType=DATE},
+      </if>
+      <if test="schoolType != null" >
+        school_type = #{schoolType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.Userdetail" >
+    update t_userdetail
+    set idcard = #{idcard,jdbcType=VARCHAR},
+      imgPaht = #{imgpaht,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      linkman_name = #{linkmanName,jdbcType=VARCHAR},
+      linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      linkman_relation = #{linkmanRelation,jdbcType=VARCHAR},
+      approve = #{approve,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=DATE},
+      schoolname = #{schoolname,jdbcType=VARCHAR},
+      overdate = #{overdate,jdbcType=DATE},
+      school_type = #{schoolType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

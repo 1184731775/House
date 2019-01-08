@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+
     <!--1、声明版本 -->
     <properties>
         <shiro.version>1.4.0</shiro.version>
@@ -24,6 +25,7 @@
                 <artifactId>shiro-spring</artifactId>
                 <version>${shiro.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
@@ -78,6 +80,25 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.6</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
@@ -112,6 +133,7 @@
 
 
     </dependencies>
+
     <build>
         <plugins>
 
@@ -122,9 +144,27 @@
                 <version>2.2</version>
                 <configuration>
                     <port>8081</port>
-                    <path>/</path>
+                    <path>/house</path>
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>qfedu</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
+
+
+
 </project>

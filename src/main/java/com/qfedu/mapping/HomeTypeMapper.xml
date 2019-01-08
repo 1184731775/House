@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.HomeTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.HomeType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tyoe_name" property="tyoeName" jdbcType="VARCHAR" />
+    <result column="type_des1" property="typeDes1" jdbcType="VARCHAR" />
+    <result column="type_des2" property="typeDes2" jdbcType="VARCHAR" />
+    <result column="type_des3" property="typeDes3" jdbcType="VARCHAR" />
+    <result column="type_des4" property="typeDes4" jdbcType="VARCHAR" />
+    <result column="type_des5" property="typeDes5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tyoe_name, type_des1, type_des2, type_des3, type_des4, type_des5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_home_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_home_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.HomeType" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_home_type (tyoe_name, type_des1, type_des2, 
+      type_des3, type_des4, type_des5
+      )
+    values (#{tyoeName,jdbcType=VARCHAR}, #{typeDes1,jdbcType=VARCHAR}, #{typeDes2,jdbcType=VARCHAR}, 
+      #{typeDes3,jdbcType=VARCHAR}, #{typeDes4,jdbcType=VARCHAR}, #{typeDes5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.HomeType" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_home_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tyoeName != null" >
+        tyoe_name,
+      </if>
+      <if test="typeDes1 != null" >
+        type_des1,
+      </if>
+      <if test="typeDes2 != null" >
+        type_des2,
+      </if>
+      <if test="typeDes3 != null" >
+        type_des3,
+      </if>
+      <if test="typeDes4 != null" >
+        type_des4,
+      </if>
+      <if test="typeDes5 != null" >
+        type_des5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tyoeName != null" >
+        #{tyoeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes1 != null" >
+        #{typeDes1,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes2 != null" >
+        #{typeDes2,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes3 != null" >
+        #{typeDes3,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes4 != null" >
+        #{typeDes4,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes5 != null" >
+        #{typeDes5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.HomeType" >
+    update t_home_type
+    <set >
+      <if test="tyoeName != null" >
+        tyoe_name = #{tyoeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes1 != null" >
+        type_des1 = #{typeDes1,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes2 != null" >
+        type_des2 = #{typeDes2,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes3 != null" >
+        type_des3 = #{typeDes3,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes4 != null" >
+        type_des4 = #{typeDes4,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDes5 != null" >
+        type_des5 = #{typeDes5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.HomeType" >
+    update t_home_type
+    set tyoe_name = #{tyoeName,jdbcType=VARCHAR},
+      type_des1 = #{typeDes1,jdbcType=VARCHAR},
+      type_des2 = #{typeDes2,jdbcType=VARCHAR},
+      type_des3 = #{typeDes3,jdbcType=VARCHAR},
+      type_des4 = #{typeDes4,jdbcType=VARCHAR},
+      type_des5 = #{typeDes5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.GoodsDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.GoodsDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_price" property="goodsPrice" jdbcType="VARCHAR" />
+    <result column="goods_sales" property="goodsSales" jdbcType="VARCHAR" />
+    <result column="goods_freight" property="goodsFreight" jdbcType="VARCHAR" />
+    <result column="goods_color" property="goodsColor" jdbcType="VARCHAR" />
+    <result column="imgs1" property="imgs1" jdbcType="VARCHAR" />
+    <result column="imgs2" property="imgs2" jdbcType="VARCHAR" />
+    <result column="msgs3" property="msgs3" jdbcType="VARCHAR" />
+    <result column="imgs4" property="imgs4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_price, goods_sales, goods_freight, goods_color, imgs1, imgs2, msgs3, imgs4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_goods_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.GoodsDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_goods_detail (goods_price, goods_sales, goods_freight, 
+      goods_color, imgs1, imgs2, 
+      msgs3, imgs4)
+    values (#{goodsPrice,jdbcType=VARCHAR}, #{goodsSales,jdbcType=VARCHAR}, #{goodsFreight,jdbcType=VARCHAR}, 
+      #{goodsColor,jdbcType=VARCHAR}, #{imgs1,jdbcType=VARCHAR}, #{imgs2,jdbcType=VARCHAR}, 
+      #{msgs3,jdbcType=VARCHAR}, #{imgs4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.GoodsDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_goods_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsSales != null" >
+        goods_sales,
+      </if>
+      <if test="goodsFreight != null" >
+        goods_freight,
+      </if>
+      <if test="goodsColor != null" >
+        goods_color,
+      </if>
+      <if test="imgs1 != null" >
+        imgs1,
+      </if>
+      <if test="imgs2 != null" >
+        imgs2,
+      </if>
+      <if test="msgs3 != null" >
+        msgs3,
+      </if>
+      <if test="imgs4 != null" >
+        imgs4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSales != null" >
+        #{goodsSales,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsFreight != null" >
+        #{goodsFreight,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null" >
+        #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs1 != null" >
+        #{imgs1,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs2 != null" >
+        #{imgs2,jdbcType=VARCHAR},
+      </if>
+      <if test="msgs3 != null" >
+        #{msgs3,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs4 != null" >
+        #{imgs4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.GoodsDetail" >
+    update t_goods_detail
+    <set >
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSales != null" >
+        goods_sales = #{goodsSales,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsFreight != null" >
+        goods_freight = #{goodsFreight,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null" >
+        goods_color = #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs1 != null" >
+        imgs1 = #{imgs1,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs2 != null" >
+        imgs2 = #{imgs2,jdbcType=VARCHAR},
+      </if>
+      <if test="msgs3 != null" >
+        msgs3 = #{msgs3,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs4 != null" >
+        imgs4 = #{imgs4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.GoodsDetail" >
+    update t_goods_detail
+    set goods_price = #{goodsPrice,jdbcType=VARCHAR},
+      goods_sales = #{goodsSales,jdbcType=VARCHAR},
+      goods_freight = #{goodsFreight,jdbcType=VARCHAR},
+      goods_color = #{goodsColor,jdbcType=VARCHAR},
+      imgs1 = #{imgs1,jdbcType=VARCHAR},
+      imgs2 = #{imgs2,jdbcType=VARCHAR},
+      msgs3 = #{msgs3,jdbcType=VARCHAR},
+      imgs4 = #{imgs4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

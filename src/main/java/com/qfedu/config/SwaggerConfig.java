@@ -1,4 +1,5 @@
 package com.qfedu.config;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -14,17 +15,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2  //启用Swagger
 public class SwaggerConfig {
     public ApiInfo createApi(){
-        return new ApiInfoBuilder().title("项目接口文档").
+        return new ApiInfoBuilder().title("第16组联合项目接口文档").
                 description("为了更好的融入团队，并且模拟真实的企业开发环境").
-                contact(new Contact("House","http://xcmxy.com","121212@163.com")).build();
+                contact(new Contact("Java1806","http://1000phone.com","121212@163.com")).build();
     }
     @Bean  //等价于 <bean>标签
     public Docket createDoc(){
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(createApi()).select().
                 apis(RequestHandlerSelectors.basePackage("com.qfedu.controller")).build();
-    }
-
-    public static void main(String[] args) {
-
     }
 }

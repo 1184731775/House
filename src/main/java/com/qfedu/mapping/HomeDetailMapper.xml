@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.HomeDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.HomeDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="imgPath" property="imgpath" jdbcType="VARCHAR" />
+    <result column="imgPaht2" property="imgpaht2" jdbcType="VARCHAR" />
+    <result column="imgPath3" property="imgpath3" jdbcType="VARCHAR" />
+    <result column="ingPath4" property="ingpath4" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="desc1" property="desc1" jdbcType="VARCHAR" />
+    <result column="desc2" property="desc2" jdbcType="VARCHAR" />
+    <result column="desc3" property="desc3" jdbcType="VARCHAR" />
+    <result column="desc4" property="desc4" jdbcType="VARCHAR" />
+    <result column="desc5" property="desc5" jdbcType="VARCHAR" />
+    <result column="descmax6" property="descmax6" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="addresss" property="addresss" jdbcType="VARCHAR" />
+    <result column="towards" property="towards" jdbcType="VARCHAR" />
+    <result column="floor" property="floor" jdbcType="VARCHAR" />
+    <result column="home_type" property="homeType" jdbcType="VARCHAR" />
+    <result column="elevator" property="elevator" jdbcType="VARCHAR" />
+    <result column="hot" property="hot" jdbcType="VARCHAR" />
+    <result column="green" property="green" jdbcType="VARCHAR" />
+    <result column="creatdate" property="creatdate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, imgPath, imgPaht2, imgPath3, ingPath4, name, desc1, desc2, desc3, desc4, desc5, 
+    descmax6, area, addresss, towards, floor, home_type, elevator, hot, green, creatdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_home_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_home_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.HomeDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_home_detail (imgPath, imgPaht2, imgPath3, 
+      ingPath4, name, desc1, 
+      desc2, desc3, desc4, 
+      desc5, descmax6, area, 
+      addresss, towards, floor, 
+      home_type, elevator, hot, 
+      green, creatdate)
+    values (#{imgpath,jdbcType=VARCHAR}, #{imgpaht2,jdbcType=VARCHAR}, #{imgpath3,jdbcType=VARCHAR}, 
+      #{ingpath4,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{desc1,jdbcType=VARCHAR}, 
+      #{desc2,jdbcType=VARCHAR}, #{desc3,jdbcType=VARCHAR}, #{desc4,jdbcType=VARCHAR}, 
+      #{desc5,jdbcType=VARCHAR}, #{descmax6,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{addresss,jdbcType=VARCHAR}, #{towards,jdbcType=VARCHAR}, #{floor,jdbcType=VARCHAR}, 
+      #{homeType,jdbcType=VARCHAR}, #{elevator,jdbcType=VARCHAR}, #{hot,jdbcType=VARCHAR}, 
+      #{green,jdbcType=VARCHAR}, #{creatdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.HomeDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_home_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imgpath != null" >
+        imgPath,
+      </if>
+      <if test="imgpaht2 != null" >
+        imgPaht2,
+      </if>
+      <if test="imgpath3 != null" >
+        imgPath3,
+      </if>
+      <if test="ingpath4 != null" >
+        ingPath4,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="desc1 != null" >
+        desc1,
+      </if>
+      <if test="desc2 != null" >
+        desc2,
+      </if>
+      <if test="desc3 != null" >
+        desc3,
+      </if>
+      <if test="desc4 != null" >
+        desc4,
+      </if>
+      <if test="desc5 != null" >
+        desc5,
+      </if>
+      <if test="descmax6 != null" >
+        descmax6,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="addresss != null" >
+        addresss,
+      </if>
+      <if test="towards != null" >
+        towards,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="homeType != null" >
+        home_type,
+      </if>
+      <if test="elevator != null" >
+        elevator,
+      </if>
+      <if test="hot != null" >
+        hot,
+      </if>
+      <if test="green != null" >
+        green,
+      </if>
+      <if test="creatdate != null" >
+        creatdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imgpath != null" >
+        #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpaht2 != null" >
+        #{imgpaht2,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpath3 != null" >
+        #{imgpath3,jdbcType=VARCHAR},
+      </if>
+      <if test="ingpath4 != null" >
+        #{ingpath4,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc1 != null" >
+        #{desc1,jdbcType=VARCHAR},
+      </if>
+      <if test="desc2 != null" >
+        #{desc2,jdbcType=VARCHAR},
+      </if>
+      <if test="desc3 != null" >
+        #{desc3,jdbcType=VARCHAR},
+      </if>
+      <if test="desc4 != null" >
+        #{desc4,jdbcType=VARCHAR},
+      </if>
+      <if test="desc5 != null" >
+        #{desc5,jdbcType=VARCHAR},
+      </if>
+      <if test="descmax6 != null" >
+        #{descmax6,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="addresss != null" >
+        #{addresss,jdbcType=VARCHAR},
+      </if>
+      <if test="towards != null" >
+        #{towards,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="homeType != null" >
+        #{homeType,jdbcType=VARCHAR},
+      </if>
+      <if test="elevator != null" >
+        #{elevator,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        #{hot,jdbcType=VARCHAR},
+      </if>
+      <if test="green != null" >
+        #{green,jdbcType=VARCHAR},
+      </if>
+      <if test="creatdate != null" >
+        #{creatdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.HomeDetail" >
+    update t_home_detail
+    <set >
+      <if test="imgpath != null" >
+        imgPath = #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpaht2 != null" >
+        imgPaht2 = #{imgpaht2,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpath3 != null" >
+        imgPath3 = #{imgpath3,jdbcType=VARCHAR},
+      </if>
+      <if test="ingpath4 != null" >
+        ingPath4 = #{ingpath4,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc1 != null" >
+        desc1 = #{desc1,jdbcType=VARCHAR},
+      </if>
+      <if test="desc2 != null" >
+        desc2 = #{desc2,jdbcType=VARCHAR},
+      </if>
+      <if test="desc3 != null" >
+        desc3 = #{desc3,jdbcType=VARCHAR},
+      </if>
+      <if test="desc4 != null" >
+        desc4 = #{desc4,jdbcType=VARCHAR},
+      </if>
+      <if test="desc5 != null" >
+        desc5 = #{desc5,jdbcType=VARCHAR},
+      </if>
+      <if test="descmax6 != null" >
+        descmax6 = #{descmax6,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="addresss != null" >
+        addresss = #{addresss,jdbcType=VARCHAR},
+      </if>
+      <if test="towards != null" >
+        towards = #{towards,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null" >
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="homeType != null" >
+        home_type = #{homeType,jdbcType=VARCHAR},
+      </if>
+      <if test="elevator != null" >
+        elevator = #{elevator,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        hot = #{hot,jdbcType=VARCHAR},
+      </if>
+      <if test="green != null" >
+        green = #{green,jdbcType=VARCHAR},
+      </if>
+      <if test="creatdate != null" >
+        creatdate = #{creatdate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.HomeDetail" >
+    update t_home_detail
+    set imgPath = #{imgpath,jdbcType=VARCHAR},
+      imgPaht2 = #{imgpaht2,jdbcType=VARCHAR},
+      imgPath3 = #{imgpath3,jdbcType=VARCHAR},
+      ingPath4 = #{ingpath4,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      desc1 = #{desc1,jdbcType=VARCHAR},
+      desc2 = #{desc2,jdbcType=VARCHAR},
+      desc3 = #{desc3,jdbcType=VARCHAR},
+      desc4 = #{desc4,jdbcType=VARCHAR},
+      desc5 = #{desc5,jdbcType=VARCHAR},
+      descmax6 = #{descmax6,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      addresss = #{addresss,jdbcType=VARCHAR},
+      towards = #{towards,jdbcType=VARCHAR},
+      floor = #{floor,jdbcType=VARCHAR},
+      home_type = #{homeType,jdbcType=VARCHAR},
+      elevator = #{elevator,jdbcType=VARCHAR},
+      hot = #{hot,jdbcType=VARCHAR},
+      green = #{green,jdbcType=VARCHAR},
+      creatdate = #{creatdate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

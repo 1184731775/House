@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.SuggestionMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Suggestion" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="suggest" property="suggest" jdbcType="VARCHAR" />
+    <result column="type_sug" property="typeSug" jdbcType="INTEGER" />
+    <result column="complaint" property="complaint" jdbcType="VARCHAR" />
+    <result column="type_com" property="typeCom" jdbcType="INTEGER" />
+    <result column="solution" property="solution" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qfedu.pojo.Suggestion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_suggestion (suggest, type_sug, complaint, 
+      type_com, solution, flag
+      )
+    values (#{suggest,jdbcType=VARCHAR}, #{typeSug,jdbcType=INTEGER}, #{complaint,jdbcType=VARCHAR}, 
+      #{typeCom,jdbcType=INTEGER}, #{solution,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Suggestion" >
+
+    insert into t_suggestion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="suggest != null" >
+        suggest,
+      </if>
+      <if test="typeSug != null" >
+        type_sug,
+      </if>
+      <if test="complaint != null" >
+        complaint,
+      </if>
+      <if test="typeCom != null" >
+        type_com,
+      </if>
+      <if test="solution != null" >
+        solution,
+      </if>
+      <if test="flag == null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="suggest != null" >
+        #{suggest,jdbcType=VARCHAR},
+      </if>
+      <if test="typeSug != null" >
+        #{typeSug,jdbcType=INTEGER},
+      </if>
+      <if test="complaint != null" >
+        #{complaint,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCom != null" >
+        #{typeCom,jdbcType=INTEGER},
+      </if>
+      <if test="solution != null" >
+        #{solution,jdbcType=VARCHAR},
+      </if>
+      <if test="flag == null" >
+        0,
+      </if>
+    </trim>
+  </insert>
+  <select id="selectNotMy" resultMap="BaseResultMap" parameterType="Integer">
+    select * from t_suggestion where flag=1 and id !=#{id}
+
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="Integer">
+    select * from t_suggestion where  id =#{id}
+
+  </select>
+</mapper>

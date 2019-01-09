@@ -18,7 +18,7 @@ public class UserdetailServiceImpl implements UserdetailService {
     @Autowired
     private UserdetailMapper userdetailMapper;
 
-
+    @Override
     public ResultVo update(Userdetail userdetail) {
         int i = userdetailMapper.updateByPrimaryKeySelective(userdetail);
         if (i>0){

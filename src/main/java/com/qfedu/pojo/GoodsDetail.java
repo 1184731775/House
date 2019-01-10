@@ -3,8 +3,6 @@ package com.qfedu.pojo;
 public class GoodsDetail {
     private Integer id;
 
-    private String goodsPrice;
-
     private String goodsSales;
 
     private String goodsFreight;
@@ -15,9 +13,11 @@ public class GoodsDetail {
 
     private String imgs2;
 
-    private String msgs3;
+    private String imgs3;
 
     private String imgs4;
+
+    private Integer goodsId;
 
     public Integer getId() {
         return id;
@@ -25,14 +25,6 @@ public class GoodsDetail {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getGoodsPrice() {
-        return goodsPrice;
-    }
-
-    public void setGoodsPrice(String goodsPrice) {
-        this.goodsPrice = goodsPrice == null ? null : goodsPrice.trim();
     }
 
     public String getGoodsSales() {
@@ -75,12 +67,12 @@ public class GoodsDetail {
         this.imgs2 = imgs2 == null ? null : imgs2.trim();
     }
 
-    public String getMsgs3() {
-        return msgs3;
+    public String getImgs3() {
+        return imgs3;
     }
 
-    public void setMsgs3(String msgs3) {
-        this.msgs3 = msgs3 == null ? null : msgs3.trim();
+    public void setImgs3(String imgs3) {
+        this.imgs3 = imgs3 == null ? null : imgs3.trim();
     }
 
     public String getImgs4() {
@@ -89,5 +81,13 @@ public class GoodsDetail {
 
     public void setImgs4(String imgs4) {
         this.imgs4 = imgs4 == null ? null : imgs4.trim();
+    }
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 }

@@ -1,139 +1,141 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qfedu.dao.GoodsDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.qfedu.pojo.GoodsDetail" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="goods_price" property="goodsPrice" jdbcType="VARCHAR" />
-    <result column="goods_sales" property="goodsSales" jdbcType="VARCHAR" />
-    <result column="goods_freight" property="goodsFreight" jdbcType="VARCHAR" />
-    <result column="goods_color" property="goodsColor" jdbcType="VARCHAR" />
-    <result column="imgs1" property="imgs1" jdbcType="VARCHAR" />
-    <result column="imgs2" property="imgs2" jdbcType="VARCHAR" />
-    <result column="msgs3" property="msgs3" jdbcType="VARCHAR" />
-    <result column="imgs4" property="imgs4" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.GoodsDetailMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.GoodsDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_sales" jdbcType="VARCHAR" property="goodsSales" />
+    <result column="goods_freight" jdbcType="VARCHAR" property="goodsFreight" />
+    <result column="goods_color" jdbcType="VARCHAR" property="goodsColor" />
+    <result column="imgs1" jdbcType="VARCHAR" property="imgs1" />
+    <result column="imgs2" jdbcType="VARCHAR" property="imgs2" />
+    <result column="imgs3" jdbcType="VARCHAR" property="imgs3" />
+    <result column="imgs4" jdbcType="VARCHAR" property="imgs4" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, goods_price, goods_sales, goods_freight, goods_color, imgs1, imgs2, msgs3, imgs4
+  <sql id="Base_Column_List">
+    id, goods_sales, goods_freight, goods_color, imgs1, imgs2, imgs3, imgs4, goods_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_goods_detail
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_goods_detail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.qfedu.pojo.GoodsDetail" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_goods_detail (goods_price, goods_sales, goods_freight, 
+  <insert id="insert" parameterType="com.qfedu.pojo.GoodsDetail">
+    insert into t_goods_detail (id, goods_sales, goods_freight, 
       goods_color, imgs1, imgs2, 
-      msgs3, imgs4)
-    values (#{goodsPrice,jdbcType=VARCHAR}, #{goodsSales,jdbcType=VARCHAR}, #{goodsFreight,jdbcType=VARCHAR}, 
+      imgs3, imgs4, goods_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{goodsSales,jdbcType=VARCHAR}, #{goodsFreight,jdbcType=VARCHAR}, 
       #{goodsColor,jdbcType=VARCHAR}, #{imgs1,jdbcType=VARCHAR}, #{imgs2,jdbcType=VARCHAR}, 
-      #{msgs3,jdbcType=VARCHAR}, #{imgs4,jdbcType=VARCHAR})
+      #{imgs3,jdbcType=VARCHAR}, #{imgs4,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.qfedu.pojo.GoodsDetail" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.GoodsDetail">
     insert into t_goods_detail
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="goodsPrice != null" >
-        goods_price,
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
       </if>
-      <if test="goodsSales != null" >
+      <if test="goodsSales != null">
         goods_sales,
       </if>
-      <if test="goodsFreight != null" >
+      <if test="goodsFreight != null">
         goods_freight,
       </if>
-      <if test="goodsColor != null" >
+      <if test="goodsColor != null">
         goods_color,
       </if>
-      <if test="imgs1 != null" >
+      <if test="imgs1 != null">
         imgs1,
       </if>
-      <if test="imgs2 != null" >
+      <if test="imgs2 != null">
         imgs2,
       </if>
-      <if test="msgs3 != null" >
-        msgs3,
+      <if test="imgs3 != null">
+        imgs3,
       </if>
-      <if test="imgs4 != null" >
+      <if test="imgs4 != null">
         imgs4,
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="goodsPrice != null" >
-        #{goodsPrice,jdbcType=VARCHAR},
+      <if test="goodsId != null">
+        goods_id,
       </if>
-      <if test="goodsSales != null" >
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSales != null">
         #{goodsSales,jdbcType=VARCHAR},
       </if>
-      <if test="goodsFreight != null" >
+      <if test="goodsFreight != null">
         #{goodsFreight,jdbcType=VARCHAR},
       </if>
-      <if test="goodsColor != null" >
+      <if test="goodsColor != null">
         #{goodsColor,jdbcType=VARCHAR},
       </if>
-      <if test="imgs1 != null" >
+      <if test="imgs1 != null">
         #{imgs1,jdbcType=VARCHAR},
       </if>
-      <if test="imgs2 != null" >
+      <if test="imgs2 != null">
         #{imgs2,jdbcType=VARCHAR},
       </if>
-      <if test="msgs3 != null" >
-        #{msgs3,jdbcType=VARCHAR},
+      <if test="imgs3 != null">
+        #{imgs3,jdbcType=VARCHAR},
       </if>
-      <if test="imgs4 != null" >
+      <if test="imgs4 != null">
         #{imgs4,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.GoodsDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.GoodsDetail">
     update t_goods_detail
-    <set >
-      <if test="goodsPrice != null" >
-        goods_price = #{goodsPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsSales != null" >
+    <set>
+      <if test="goodsSales != null">
         goods_sales = #{goodsSales,jdbcType=VARCHAR},
       </if>
-      <if test="goodsFreight != null" >
+      <if test="goodsFreight != null">
         goods_freight = #{goodsFreight,jdbcType=VARCHAR},
       </if>
-      <if test="goodsColor != null" >
+      <if test="goodsColor != null">
         goods_color = #{goodsColor,jdbcType=VARCHAR},
       </if>
-      <if test="imgs1 != null" >
+      <if test="imgs1 != null">
         imgs1 = #{imgs1,jdbcType=VARCHAR},
       </if>
-      <if test="imgs2 != null" >
+      <if test="imgs2 != null">
         imgs2 = #{imgs2,jdbcType=VARCHAR},
       </if>
-      <if test="msgs3 != null" >
-        msgs3 = #{msgs3,jdbcType=VARCHAR},
+      <if test="imgs3 != null">
+        imgs3 = #{imgs3,jdbcType=VARCHAR},
       </if>
-      <if test="imgs4 != null" >
+      <if test="imgs4 != null">
         imgs4 = #{imgs4,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.GoodsDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.GoodsDetail">
     update t_goods_detail
-    set goods_price = #{goodsPrice,jdbcType=VARCHAR},
-      goods_sales = #{goodsSales,jdbcType=VARCHAR},
+    set goods_sales = #{goodsSales,jdbcType=VARCHAR},
       goods_freight = #{goodsFreight,jdbcType=VARCHAR},
       goods_color = #{goodsColor,jdbcType=VARCHAR},
       imgs1 = #{imgs1,jdbcType=VARCHAR},
       imgs2 = #{imgs2,jdbcType=VARCHAR},
-      msgs3 = #{msgs3,jdbcType=VARCHAR},
-      imgs4 = #{imgs4,jdbcType=VARCHAR}
+      imgs3 = #{imgs3,jdbcType=VARCHAR},
+      imgs4 = #{imgs4,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

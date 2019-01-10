@@ -1,15 +1,19 @@
 package com.qfedu.pojo;
 
+import java.util.Date;
+
 public class Goods {
     private Integer id;
 
     private String goodsname;
 
-    private String goodsPrice;
-
     private String goodsImgs;
 
     private Integer goodsStatus;
+
+    private Date goodsCreatdate;
+
+    private Integer typeId;
 
     public Integer getId() {
         return id;
@@ -27,14 +31,6 @@ public class Goods {
         this.goodsname = goodsname == null ? null : goodsname.trim();
     }
 
-    public String getGoodsPrice() {
-        return goodsPrice;
-    }
-
-    public void setGoodsPrice(String goodsPrice) {
-        this.goodsPrice = goodsPrice == null ? null : goodsPrice.trim();
-    }
-
     public String getGoodsImgs() {
         return goodsImgs;
     }
@@ -49,5 +45,21 @@ public class Goods {
 
     public void setGoodsStatus(Integer goodsStatus) {
         this.goodsStatus = goodsStatus;
+    }
+
+    public Date getGoodsCreatdate() {
+        return goodsCreatdate;
+    }
+
+    public void setGoodsCreatdate(Date goodsCreatdate) {
+        this.goodsCreatdate = goodsCreatdate;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.ProblemMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Problem" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="problem" property="problem" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="mark" property="mark" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, typeid, problem, answer, mark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_problem
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_problem
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.Problem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_problem (typeid, problem, answer, 
+      mark)
+    values (#{typeid,jdbcType=INTEGER}, #{problem,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, 
+      #{mark,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Problem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_problem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="problem != null" >
+        problem,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="problem != null" >
+        #{problem,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.Problem" >
+    update t_problem
+    <set >
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="problem != null" >
+        problem = #{problem,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.Problem" >
+    update t_problem
+    set typeid = #{typeid,jdbcType=INTEGER},
+      problem = #{problem,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      mark = #{mark,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByNotMark" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from t_problem where mark !=0
+  </select>
+  <select id="selectByMark" parameterType="com.qfedu.pojo.Problem" resultMap="BaseResultMap" >
+    select answer
+    from t_problem where mark =#{mark} and mark !=0
+  </select>
+</mapper>

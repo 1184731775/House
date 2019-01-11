@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.ProblemtypeMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Problemtype" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="problemtype" property="problemtype" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.qfedu.pojo.Problemtype" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="problemtype" property="problemtype" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <collection property="problems" ofType="com.qfedu.pojo.Problem" javaType="ArrayList">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="typeid" property="typeid" jdbcType="INTEGER" />
+      <result column="problem" property="problem" jdbcType="VARCHAR" />
+      <result column="answer" property="answer" jdbcType="VARCHAR" />
+      <result column="mark" property="mark" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  <insert id="insert" parameterType="com.qfedu.pojo.Problemtype" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_problemtype (problemtype, imgurl)
+    values (#{problemtype,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Problemtype" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_problemtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="problemtype != null" >
+        problemtype,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="problemtype != null" >
+        #{problemtype,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectproblem" resultMap="BaseResultMap1">
+    select * from t_problemtype t INNER JOIN t_problem p ON t.id=p.typeid where p.mark=0
+  </select>
+  
+</mapper>

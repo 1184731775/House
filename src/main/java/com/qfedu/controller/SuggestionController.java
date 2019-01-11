@@ -25,19 +25,19 @@ public class SuggestionController {
     private SuggestionService suggestionService;
 
     @GetMapping("suggestionShowOther.do")
-    @ApiOperation(notes = "用户Id",tags = "投诉建议",value = "展示其他投诉信息")
+    @ApiOperation(notes = "用户Id",value = "展示其他投诉信息")
     public ResultVo ShowOther(int id){
         return suggestionService.selectNotMy(id);
     }
 
     @GetMapping("suggestionShowMy.do")
-    @ApiOperation(notes = "用户Id",tags = "我的历史投诉建议",value = "我的历史投诉建议")
+    @ApiOperation(notes = "用户Id",value = "我的历史投诉建议")
     public ResultVo ShowMy(int id){
         return suggestionService.selectById(id);
     }
 
     @PostMapping("suggestionadd.do")
-    @ApiOperation(notes = "(用户Id)和(投诉/建议)和(投诉/建议类型)",tags = "我要投诉/我要建议",value = "建议/投诉提交接口")
+    @ApiOperation(notes = "(用户Id)和(投诉/建议)和(投诉/建议类型)",value = "建议/投诉提交接口")
     public ResultVo save(Suggestion suggestion){
         return suggestionService.saveSuggestion(suggestion);
     }

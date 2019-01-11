@@ -24,7 +24,7 @@ public class UserdetailController {
     private UserdetailService userdetailService;
 
     @PostMapping("userdetailupdate.do")
-    @ApiOperation(notes = "传入的值为'id=用户Id'和'要修改的内容的键值对'",tags = "个人设置",value = "个人设置接口")
+    @ApiOperation(notes = "传入的值为'id=用户Id'和'要修改的内容的键值对'",value = "个人设置接口")
     public ResultVo update(Userdetail userdetail){
         return userdetailService.update(userdetail);
     }

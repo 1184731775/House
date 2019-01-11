@@ -24,7 +24,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @ApiOperation(notes = "name/email/phone中的一个键和值和密码键值对",tags = "登录",value = "用户登录接口")
+    @ApiOperation(notes = "name/email/phone中的一个键和值和密码键值对",value = "用户登录接口")
     @PostMapping("login.do")
     public ResultVo login(@ApiParam(value = "name/email/phone中的一个") User user){
         return userService.login(user);
@@ -35,7 +35,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @ApiOperation(notes = "name/email/phone中的一个键和值和密码键值对",tags = "注册",value = "用户注册接口")
+    @ApiOperation(notes = "name/email/phone中的一个键和值和密码键值对",value = "用户注册接口")
     @PostMapping("save.do")
     public ResultVo save(User user){
         return userService.save(user);
@@ -44,7 +44,7 @@ public class UserController {
     /**
      * 修改密码
      */
-    @ApiOperation(notes = "phone和密码",tags = "找回密码",value = "用户找回密码接口")
+    @ApiOperation(notes = "phone和密码",value = "用户找回密码接口")
     @PostMapping("updatePassword.do")
     public ResultVo update(User user){
         return userService.update(user);

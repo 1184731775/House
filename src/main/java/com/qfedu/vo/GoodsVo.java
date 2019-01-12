@@ -14,11 +14,11 @@ public class GoodsVo {
     private String goodsPrice;
     private Integer typeId;
 
-    public Integer getId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setId(Integer goodsId) {
+    public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
     }
 
@@ -100,6 +100,14 @@ public class GoodsVo {
 
     public void setGoodsPrice(String goodsPrice) {
         this.goodsPrice = goodsPrice;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public GoodsVo() { }

@@ -8,9 +8,13 @@ public interface GoodsService {
 
     PageBeanVo<GoodsVo> selectAllGoods(Integer page, Integer size,Integer typeId);
 
+    ResultVo selectGoods(String goodsnaame);
+
     ResultVo selectGoodsDet(Integer goodsId,Double goodsPrice);
 
     ResultVo selectGoodsDetByColor(Integer goodsId,String color);
 
     ResultVo selectColorById(Integer id);
+
+    ResultVo selectGoodsByDate();
 }

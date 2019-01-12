@@ -3,11 +3,13 @@ package com.qfedu.pojo;
 public class Orders {
     private Integer id;
 
-    private Integer goodsCount;
-
-    private String goodsPrice;
-
     private Integer orederStatus;
+
+    private Integer goodscarId;
+
+    private Integer addressId;
+
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -17,27 +19,35 @@ public class Orders {
         this.id = id;
     }
 
-    public Integer getGoodsCount() {
-        return goodsCount;
-    }
-
-    public void setGoodsCount(Integer goodsCount) {
-        this.goodsCount = goodsCount;
-    }
-
-    public String getGoodsPrice() {
-        return goodsPrice;
-    }
-
-    public void setGoodsPrice(String goodsPrice) {
-        this.goodsPrice = goodsPrice == null ? null : goodsPrice.trim();
-    }
-
     public Integer getOrederStatus() {
         return orederStatus;
     }
 
     public void setOrederStatus(Integer orederStatus) {
         this.orederStatus = orederStatus;
+    }
+
+    public Integer getGoodscarId() {
+        return goodscarId;
+    }
+
+    public void setGoodscarId(Integer goodscarId) {
+        this.goodscarId = goodscarId;
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

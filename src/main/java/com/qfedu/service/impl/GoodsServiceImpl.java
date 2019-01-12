@@ -32,6 +32,12 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public ResultVo selectGoods(String goodsName) {
+       List<GoodsVo> list= goodsDao.selectOne("%"+goodsName+"%");
+        return ResultVo.setOK(list);
+    }
+
+    @Override
     public ResultVo selectGoodsDet(Integer goodsId,Double goodsPrice) {
         GoodsVo go = goodsDao.selectGoodsDet(goodsId,goodsPrice);
 
@@ -47,6 +53,13 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public ResultVo selectColorById(Integer id) {
         List<GoodsVo> list = goodsColorDao.selectColor(id);
+        return ResultVo.setOK(list);
+    }
+
+    @Override
+    public ResultVo selectGoodsByDate() {
+
+        List<GoodsVo> list = goodsDao.selectByDate();
         return ResultVo.setOK(list);
     }
 }

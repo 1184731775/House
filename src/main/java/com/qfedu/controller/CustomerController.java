@@ -54,7 +54,7 @@ public class CustomerController {
     }
 
     @GetMapping("selectBypage.do")
-    @ApiOperation(notes = "page当前页码数， 每页多少条数据", value = "客户信息的分页查询")
+    @ApiOperation(notes = "page当前页码数， limit每页多少条数据", value = "客户信息的分页查询")
     public PageBeanVo<Customer> selectByPage(int page, int limit) {
         return service.queryCustomerByPage(page, limit);
     }

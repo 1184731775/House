@@ -1,6 +1,6 @@
 package com.qfedu.pojo;
 
-public class GoodsDetailColor {
+public class goodsDetailColor {
     private Integer id;
 
     private Integer goodsDetailId;
@@ -8,6 +8,8 @@ public class GoodsDetailColor {
     private Integer colorId;
 
     private Double goodsPrice;
+
+    private Integer goodsId;
 
     public Integer getId() {
         return id;
@@ -39,5 +41,13 @@ public class GoodsDetailColor {
 
     public void setGoodsPrice(Double goodsPrice) {
         this.goodsPrice = goodsPrice;
+    }
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 }

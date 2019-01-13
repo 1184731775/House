@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Address">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="downtown" jdbcType="VARCHAR" property="downtown" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zip" jdbcType="VARCHAR" property="zip" />
+    <result column="recipient" jdbcType="VARCHAR" property="recipient" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="IDcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="add_status" jdbcType="INTEGER" property="addStatus" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, downtown, address, zip, recipient, phone, IDcard, add_status, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.Address">
+    insert into t_address (id, downtown, address, 
+      zip, recipient, phone, 
+      IDcard, add_status, user_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{downtown,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{zip,jdbcType=VARCHAR}, #{recipient,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{addStatus,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Address">
+    insert into t_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="downtown != null">
+        downtown,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="zip != null">
+        zip,
+      </if>
+      <if test="recipient != null">
+        recipient,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="idcard != null">
+        IDcard,
+      </if>
+      <if test="addStatus != null">
+        add_status,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="downtown != null">
+        #{downtown,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null">
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null">
+        #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="addStatus != null">
+        #{addStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.Address">
+    update t_address
+    <set>
+      <if test="downtown != null">
+        downtown = #{downtown,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null">
+        zip = #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null">
+        recipient = #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        IDcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="addStatus != null">
+        add_status = #{addStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.Address">
+    update t_address
+    set downtown = #{downtown,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zip = #{zip,jdbcType=VARCHAR},
+      recipient = #{recipient,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      IDcard = #{idcard,jdbcType=VARCHAR},
+      add_status = #{addStatus,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -60,4 +60,30 @@ public interface GoodsMapper {
             "and color =#{color}")
     @ResultType(GoodsVo.class)
     GoodsVo selectByGoodsColor(@Param("goodsId") Integer goodsId, @Param("color") String color);
+
+    @Select("SELECT MIN(goods_price) as goods_price,tg.goods_creatdate ,gd.goods_id,tg.goodsname,tg.goods_imgs\n" +
+            "from t_goods_detail_color gdc\n" +
+            "INNER JOIN t_goods_detail gd\n" +
+            "on gd.id=gdc.goods_detail_id\n" +
+            "INNER JOIN t_goods tg\n" +
+            "on gd.goods_id=tg.id \n" +
+            "INNER JOIN t_goodstype gt\n" +
+            "ON gt.id = tg.type_id\n" +
+            "GROUP BY goods_detail_id\n" +
+            "ORDER BY tg.goods_creatdate DESC")
+    @ResultType(GoodsVo.class)
+    List<GoodsVo> selectByDate();
+
+    @Select("SELECT MIN(goods_price) as goods_price,gt.typename,gdc.goods_detail_id,gd.goods_id,tg.goodsname as goodsName,tg.goods_imgs\n" +
+            "from t_goods_detail_color gdc\n" +
+            "INNER JOIN t_goods_detail gd\n" +
+            "on gd.id=gdc.goods_detail_id\n" +
+            "INNER JOIN t_goods tg\n" +
+            "on gd.goods_id=tg.id \n" +
+            "INNER JOIN t_goodstype gt\n" +
+            "ON gt.id = tg.type_id\n" +
+            "WHERE goodsName LIKE #{goodsName}\n" +
+            "GROUP BY goods_detail_id\n")
+    @ResultType(GoodsVo.class)
+    List<GoodsVo> selectOne(String goodsName);
 }

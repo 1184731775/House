@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.HomeMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Home">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="typid" jdbcType="INTEGER" property="typid" />
+    <result column="img1" jdbcType="VARCHAR" property="img1" />
+    <result column="img2" jdbcType="VARCHAR" property="img2" />
+    <result column="img3" jdbcType="VARCHAR" property="img3" />
+    <result column="img4" jdbcType="VARCHAR" property="img4" />
+    <result column="homename" jdbcType="VARCHAR" property="homename" />
+    <result column="homesize" jdbcType="VARCHAR" property="homesize" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="mark1" jdbcType="VARCHAR" property="mark1" />
+    <result column="mark2" jdbcType="VARCHAR" property="mark2" />
+    <result column="mark3" jdbcType="VARCHAR" property="mark3" />
+    <result column="direction" jdbcType="VARCHAR" property="direction" />
+    <result column="huxing" jdbcType="VARCHAR" property="huxing" />
+    <result column="louceng" jdbcType="VARCHAR" property="louceng" />
+    <result column="dianti" jdbcType="INTEGER" property="dianti" />
+    <result column="niandai" jdbcType="VARCHAR" property="niandai" />
+    <result column="gongnuan" jdbcType="INTEGER" property="gongnuan" />
+    <result column="lvhua" jdbcType="VARCHAR" property="lvhua" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, typid, img1, img2, img3, img4, homename, homesize, address, price, mark1, mark2, 
+    mark3, direction, huxing, louceng, dianti, niandai, gongnuan, lvhua
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from home
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from home
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.Home">
+    insert into home (id, typid, img1, 
+      img2, img3, img4, homename, 
+      homesize, address, price, 
+      mark1, mark2, mark3, 
+      direction, huxing, louceng, 
+      dianti, niandai, gongnuan, 
+      lvhua)
+    values (#{id,jdbcType=INTEGER}, #{typid,jdbcType=INTEGER}, #{img1,jdbcType=VARCHAR}, 
+      #{img2,jdbcType=VARCHAR}, #{img3,jdbcType=VARCHAR}, #{img4,jdbcType=VARCHAR}, #{homename,jdbcType=VARCHAR}, 
+      #{homesize,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{mark1,jdbcType=VARCHAR}, #{mark2,jdbcType=VARCHAR}, #{mark3,jdbcType=VARCHAR}, 
+      #{direction,jdbcType=VARCHAR}, #{huxing,jdbcType=VARCHAR}, #{louceng,jdbcType=VARCHAR}, 
+      #{dianti,jdbcType=INTEGER}, #{niandai,jdbcType=VARCHAR}, #{gongnuan,jdbcType=INTEGER}, 
+      #{lvhua,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Home">
+    insert into home
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="typid != null">
+        typid,
+      </if>
+      <if test="img1 != null">
+        img1,
+      </if>
+      <if test="img2 != null">
+        img2,
+      </if>
+      <if test="img3 != null">
+        img3,
+      </if>
+      <if test="img4 != null">
+        img4,
+      </if>
+      <if test="homename != null">
+        homename,
+      </if>
+      <if test="homesize != null">
+        homesize,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="mark1 != null">
+        mark1,
+      </if>
+      <if test="mark2 != null">
+        mark2,
+      </if>
+      <if test="mark3 != null">
+        mark3,
+      </if>
+      <if test="direction != null">
+        direction,
+      </if>
+      <if test="huxing != null">
+        huxing,
+      </if>
+      <if test="louceng != null">
+        louceng,
+      </if>
+      <if test="dianti != null">
+        dianti,
+      </if>
+      <if test="niandai != null">
+        niandai,
+      </if>
+      <if test="gongnuan != null">
+        gongnuan,
+      </if>
+      <if test="lvhua != null">
+        lvhua,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typid != null">
+        #{typid,jdbcType=INTEGER},
+      </if>
+      <if test="img1 != null">
+        #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null">
+        #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null">
+        #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="img4 != null">
+        #{img4,jdbcType=VARCHAR},
+      </if>
+      <if test="homename != null">
+        #{homename,jdbcType=VARCHAR},
+      </if>
+      <if test="homesize != null">
+        #{homesize,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="mark1 != null">
+        #{mark1,jdbcType=VARCHAR},
+      </if>
+      <if test="mark2 != null">
+        #{mark2,jdbcType=VARCHAR},
+      </if>
+      <if test="mark3 != null">
+        #{mark3,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="huxing != null">
+        #{huxing,jdbcType=VARCHAR},
+      </if>
+      <if test="louceng != null">
+        #{louceng,jdbcType=VARCHAR},
+      </if>
+      <if test="dianti != null">
+        #{dianti,jdbcType=INTEGER},
+      </if>
+      <if test="niandai != null">
+        #{niandai,jdbcType=VARCHAR},
+      </if>
+      <if test="gongnuan != null">
+        #{gongnuan,jdbcType=INTEGER},
+      </if>
+      <if test="lvhua != null">
+        #{lvhua,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.Home">
+    update home
+    <set>
+      <if test="typid != null">
+        typid = #{typid,jdbcType=INTEGER},
+      </if>
+      <if test="img1 != null">
+        img1 = #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null">
+        img2 = #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null">
+        img3 = #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="img4 != null">
+        img4 = #{img4,jdbcType=VARCHAR},
+      </if>
+      <if test="homename != null">
+        homename = #{homename,jdbcType=VARCHAR},
+      </if>
+      <if test="homesize != null">
+        homesize = #{homesize,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="mark1 != null">
+        mark1 = #{mark1,jdbcType=VARCHAR},
+      </if>
+      <if test="mark2 != null">
+        mark2 = #{mark2,jdbcType=VARCHAR},
+      </if>
+      <if test="mark3 != null">
+        mark3 = #{mark3,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        direction = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="huxing != null">
+        huxing = #{huxing,jdbcType=VARCHAR},
+      </if>
+      <if test="louceng != null">
+        louceng = #{louceng,jdbcType=VARCHAR},
+      </if>
+      <if test="dianti != null">
+        dianti = #{dianti,jdbcType=INTEGER},
+      </if>
+      <if test="niandai != null">
+        niandai = #{niandai,jdbcType=VARCHAR},
+      </if>
+      <if test="gongnuan != null">
+        gongnuan = #{gongnuan,jdbcType=INTEGER},
+      </if>
+      <if test="lvhua != null">
+        lvhua = #{lvhua,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.Home">
+    update home
+    set typid = #{typid,jdbcType=INTEGER},
+      img1 = #{img1,jdbcType=VARCHAR},
+      img2 = #{img2,jdbcType=VARCHAR},
+      img3 = #{img3,jdbcType=VARCHAR},
+      img4 = #{img4,jdbcType=VARCHAR},
+      homename = #{homename,jdbcType=VARCHAR},
+      homesize = #{homesize,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      mark1 = #{mark1,jdbcType=VARCHAR},
+      mark2 = #{mark2,jdbcType=VARCHAR},
+      mark3 = #{mark3,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=VARCHAR},
+      huxing = #{huxing,jdbcType=VARCHAR},
+      louceng = #{louceng,jdbcType=VARCHAR},
+      dianti = #{dianti,jdbcType=INTEGER},
+      niandai = #{niandai,jdbcType=VARCHAR},
+      gongnuan = #{gongnuan,jdbcType=INTEGER},
+      lvhua = #{lvhua,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectHomeinfoByTypeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from home where typid=#{typeid}
+  </select>
+</mapper>

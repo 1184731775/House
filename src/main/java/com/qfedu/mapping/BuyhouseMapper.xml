@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.BuyhouseMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Buyhouse" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="houseimgurl" property="houseimgurl" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.qfedu.pojo.Buyhouse" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="houseimgurl" property="houseimgurl" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <collection property="buyhousedetil" javaType="com.qfedu.pojo.Buyhousedetil" ofType="com.qfedu.pojo.Buyhousedetil">
+      <result column="houseid" property="houseid" jdbcType="CHAR" />
+      <result column="housetype" property="housetype" jdbcType="VARCHAR" />
+      <result column="address" property="address" jdbcType="VARCHAR" />
+      <result column="starttime" property="starttime" jdbcType="DATE" />
+      <result column="overtime" property="overtime" jdbcType="DATE" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, typeid, houseimgurl, name, price, area, city
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_buyhouse
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_buyhouse
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.pojo.Buyhouse" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_buyhouse (typeid, houseimgurl, name, 
+      price, area, city)
+    values (#{typeid,jdbcType=INTEGER}, #{houseimgurl,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER}, #{area,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Buyhouse" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_buyhouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="houseimgurl != null" >
+        houseimgurl,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="houseimgurl != null" >
+        #{houseimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.pojo.Buyhouse" >
+    update t_buyhouse
+    <set >
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="houseimgurl != null" >
+        houseimgurl = #{houseimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.pojo.Buyhouse" >
+    update t_buyhouse
+    set typeid = #{typeid,jdbcType=INTEGER},
+      houseimgurl = #{houseimgurl,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      area = #{area,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectBytypeId"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+     select count(*) as count
+    from  t_buyhouse where typeid=#{id}
+  </select>
+
+  <select id="selectAllId"  parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+     select *
+    from  t_buyhouse where typeid=#{id}
+  </select>
+
+
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="com.qfedu.pojo.Buyhouse">
+    select <include refid="Base_Column_List" />
+    from  t_buyhouse where name like "%"#{name}"%"
+  </select>
+  <select id="selectCountByName" resultType="java.lang.Integer" parameterType="com.qfedu.pojo.Buyhouse">
+    select count(*) as count
+    from  t_buyhouse where name like "%"#{name}"%"
+  </select>
+
+  <select id="selectByPrice" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" />
+    from  t_buyhouse where price between #{price1} and #{price2}
+  </select>
+
+
+  <select id="selectByArea" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select <include refid="Base_Column_List" />
+    from  t_buyhouse where area between #{area1} and #{area2}
+  </select>
+  <select id="selectByCity" resultMap="BaseResultMap" parameterType="com.qfedu.pojo.Buyhouse">
+    select <include refid="Base_Column_List" />
+    from  t_buyhouse where city=#{city}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap1" parameterType="com.qfedu.pojo.Buyhouse">
+    select * FROM t_buyhouse h INNER JOIN t_buyhousedetil hd on h.id=hd.houseid where h.id=#{hid}
+  </select>
+
+  <select id="selectById" resultMap="BaseResultMap" >
+    select
+    id,name
+    from t_buyhouse
+
+  </select>
+  <select id="selectqwe" resultMap="BaseResultMap">
+    SELECT * from t_buyhouse WHERE id &lt; 6;
+  </select>
+</mapper>

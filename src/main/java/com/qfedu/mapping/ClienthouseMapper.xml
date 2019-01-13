@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.ClienthouseMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Clienthouse" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="clientid" property="clientid" jdbcType="INTEGER" />
+    <result column="houseid" property="houseid" jdbcType="INTEGER" />
+    <result column="report" property="report" jdbcType="INTEGER" />
+    <result column="look" property="look" jdbcType="INTEGER" />
+    <result column="subscription" property="subscription" jdbcType="INTEGER" />
+    <result column="sransaction" property="sransaction" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qfedu.pojo.Clienthouse" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_clienthouse (clientid, houseid, report, 
+      look, subscription, sransaction
+      )
+    values (#{clientid,jdbcType=INTEGER}, #{houseid,jdbcType=INTEGER}, #{report,jdbcType=INTEGER}, 
+      #{look,jdbcType=INTEGER}, #{subscription,jdbcType=INTEGER}, #{sransaction,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Clienthouse" >
+
+    insert into t_clienthouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clientid != null" >
+        clientid,
+      </if>
+      <if test="houseid != null" >
+        houseid,
+      </if>
+      <if test="report == null" >
+        report,
+      </if>
+      <if test="look != null" >
+        look,
+      </if>
+      <if test="subscription != null" >
+        subscription,
+      </if>
+      <if test="sransaction != null" >
+        sransaction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clientid != null" >
+        #{clientid},
+      </if>
+      <if test="houseid != null" >
+        #{houseid},
+      </if>
+      <if test="report == null" >
+        1,
+      </if>
+      <if test="look != null" >
+        #{look,jdbcType=INTEGER},
+      </if>
+      <if test="subscription != null" >
+        #{subscription,jdbcType=INTEGER},
+      </if>
+      <if test="sransaction != null" >
+        #{sransaction,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.BuyhousedetilMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Buyhousedetil" >
+    <result column="houseid" property="houseid" jdbcType="CHAR" />
+    <result column="housetype" property="housetype" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="DATE" />
+    <result column="overtime" property="overtime" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qfedu.pojo.Buyhousedetil" >
+    insert into t_buyhousedetil (houseid, housetype, address, 
+      starttime, overtime)
+    values (#{houseid,jdbcType=CHAR}, #{housetype,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=DATE}, #{overtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Buyhousedetil" >
+    insert into t_buyhousedetil
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="houseid != null" >
+        houseid,
+      </if>
+      <if test="housetype != null" >
+        housetype,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="overtime != null" >
+        overtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="houseid != null" >
+        #{houseid,jdbcType=CHAR},
+      </if>
+      <if test="housetype != null" >
+        #{housetype,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="overtime != null" >
+        #{overtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

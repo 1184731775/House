@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.dao.ClientMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.pojo.Client" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="intention" property="intention" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qfedu.pojo.Client" extends="BaseResultMap" >
+    <result column="phone" property="phone" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    phone
+  </sql>
+  <insert id="insert" parameterType="com.qfedu.pojo.Client" >
+
+    insert into t_client (name, idcard, info, 
+      intention, sex, phone
+      )
+    values (#{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
+      #{intention,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.pojo.Client" >
+
+    insert into t_client
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="intention != null" >
+        intention,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="intention != null" >
+        #{intention,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByName" resultMap="BaseResultMap" >
+    select * from t_client
+    <where>
+    <if test="name != null">
+      name =#{name}
+    </if>
+
+  </where>
+  </select>
+</mapper>

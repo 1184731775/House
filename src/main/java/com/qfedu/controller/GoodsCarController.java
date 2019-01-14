@@ -21,11 +21,17 @@ public class GoodsCarController {
         return goodsCarService.selectAllGoodsCar(userId);
     }
 
-    @ApiOperation(notes = "根据id删除购物车",value = "购物车删除接口")
-    @GetMapping("deleteGoodscar.do")
-    public ResultVo deleteById(int[] arrIds){
-        goodsCarService.deleteGoodsCar(arrIds);
+    @ApiOperation(notes = "根据id删除购物车并且增加订单",value = "购物车结算接口")
+    @GetMapping("ClearingGoodscar.do")
+    public ResultVo deleteAndAdd(int[] arrIds){
+        goodsCarService.deleteGoodsCarAddOrders(arrIds);
         return ResultVo.setOK(null);
+    }
+
+    @ApiOperation(notes = "根据id删除购物车",value="购物车删除接口")
+    @GetMapping("deleteGoodscar.do")
+    public ResultVo delete(int[] Ids){
+        return  goodsCarService.deleteGoodsCar(Ids);
     }
 
     @ApiOperation(notes = "添加购物车，将商品价格表的id传过来",value = "添加购物车接口")

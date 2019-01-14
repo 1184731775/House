@@ -7,7 +7,11 @@ public interface GoodsCarService {
 
     ResultVo selectAllGoodsCar(Integer userId);
 
-    ResultVo deleteGoodsCar(int[] carIds);
+    ResultVo deleteGoodsCarAddOrders(int[] carIds);
 
     ResultVo addGoodsCar(Goodscar goodscar);
+
+    ResultVo deleteGoodsCar(int[] carIds);
+
+
 }
